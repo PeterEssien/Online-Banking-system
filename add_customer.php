@@ -32,8 +32,8 @@ case 'BANGALORE': $ifsc="B6A9E";
 }
 
 $sql3="SELECT MAX(id) from customer";
-$result=mysql_query($sql3) or die(mysql_error());
-$rws=  mysql_fetch_array($result);
+$result=mysqli_query($con,$sql3) or die(mysql_error());
+$rws=  mysqli_fetch_array($result);
 $id=$rws[0]+1;
 $sql1="CREATE TABLE passbook".$id." 
     (transactionid int(5) AUTO_INCREMENT, transactiondate date, name VARCHAR(255), branch VARCHAR(255), ifsc VARCHAR(255), credit int(10), debit int(10), 
@@ -41,9 +41,9 @@ $sql1="CREATE TABLE passbook".$id."
 
 $sql="insert into customer values('','$name','$gender','$dob','$nominee','$type','$address','$mobile',
     '$email','$password','$branch','$ifsc','','ACTIVE')";
-mysql_query($sql) or die("Email already exists!");
-mysql_query($sql1) or die(mysql_error());
+mysqli_query($con,$sql) or die("Email already exists!");
+mysqli_query($con,$sql1) or die(mysql_error());
 $sql4="insert into passbook".$id." values('','$date','$name','$branch','$ifsc','$credit','0','$credit','Account Open')";
-mysql_query($sql4) or die(mysql_error());
+mysqli_query($con,$sql4) or die(mysql_error());
 header('location:admin_hompage.php');
 ?>
