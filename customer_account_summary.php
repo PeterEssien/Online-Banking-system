@@ -9,7 +9,7 @@ if(!isset($_SESSION['customer_login']))
                 include '_inc/dbconn.php';
                 $sql="SELECT * FROM customer WHERE email='$cust_id'";
                 $result= mysqli_query($con,$sql) or die(mysql_error());
-                $rws=  mysql_fetch_array($result);
+                $rws=  mysqli_fetch_array($result);
                 
                 
                 $name= $rws[1];
