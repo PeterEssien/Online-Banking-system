@@ -40,8 +40,8 @@ include '_inc/dbconn.php';
 if(!isset($_SESSION['admin_login'])){
 if(isset($_REQUEST['submitBtn'])){
     $sql="SELECT * FROM admin WHERE id='1'";
-    $result=mysql_query($sql);
-    $rws=  mysql_fetch_array($result);
+    $result=mysqli_query($con,$sql);
+    $rws=  mysqli_fetch_array($result);
     $username=  mysql_real_escape_string($_REQUEST['uname']);
     $password=  mysql_real_escape_string($_REQUEST['pwd']);
     if($username==$rws[8] && $password==$rws[9]) {
