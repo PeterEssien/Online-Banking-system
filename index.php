@@ -20,7 +20,7 @@ if(isset($_REQUEST['submitBtn'])){
     $password= sha1($_REQUEST['pwd'].$salt);
   
     $sql="SELECT email,password FROM customer WHERE email='$username' AND password='$password'";
-    $result=mysql_query($sql) or die(mysql_error());
+    $result=mysqli_query($sql) or die(mysql_error());
     $rws=  mysql_fetch_array($result);
     
     $user=$rws[0];
