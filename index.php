@@ -11,8 +11,9 @@
      -->
 
 <?php 
+require('_inc/dbconn.php');
+ session_start();
 if(isset($_REQUEST['submitBtn'])){
-    include '_inc/dbconn.php';
     $username=$_REQUEST['uname'];
     
     //salting of password
@@ -27,7 +28,6 @@ if(isset($_REQUEST['submitBtn'])){
     $pwd=$rws[1];    
     
     if($user==$username && $pwd==$password){
-        session_start();
         $_SESSION['customer_login']=1;
         $_SESSION['cust_id']=$username;
     header('location:customer_account_summary.php'); 
@@ -39,7 +39,6 @@ else{
 ?>
 <?php 
 session_start();
-        
 if(isset($_SESSION['customer_login'])) 
     header('location:customer_account_summary.php');   
 ?>
