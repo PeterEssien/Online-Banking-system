@@ -50,7 +50,7 @@ if(!isset($_SESSION['admin_login']))
             $again=  mysql_real_escape_string($_REQUEST['again_password']);
             if($rws[9]==$old && $new==$again){
                 $sql1="UPDATE admin SET pwd='$new' WHERE id='1'";
-                mysql_query($sql1) or die(mysql_error());
+                mysqli_query($con,$sql1) or die(mysql_error());
                 header('location:admin_hompage.php');
             }
             else{
