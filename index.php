@@ -10,37 +10,45 @@
      fb - facebook.com/abhimanyu.shrivastava.58
      -->
 
-<?php 
-require('_inc/dbconn.php');
- session_start();
-if(isset($_REQUEST['submitBtn'])){
-    $username=$_REQUEST['uname'];
-    
-    //salting of password
-    $salt="@g26jQsG&nh*&#8v";
-    $password= sha1($_REQUEST['pwd'].$salt);
-  
-    $sql="SELECT email,password FROM customer WHERE email='$username' AND password='$password'";
-    $result=mysqli_query($con,$sql) or die(mysqli_error());
-    $rws=  mysqli_fetch_array($result);
-    
-    $user=$rws[0];
-    $pwd=$rws[1];    
-    
-    if($user==$username && $pwd==$password){
-        $_SESSION['customer_login']=1;
-        $_SESSION['cust_id']=$username;
-    header('location:customer_account_summary.php'); 
-    }
-   
-else{
-    header('location:index.php');  
-}}
-?>
-<?php 
+<?php
+// Ensure no whitespace or output before session_start()
 session_start();
-if(isset($_SESSION['customer_login'])) 
-    header('location:customer_account_summary.php');   
+
+// Include the database connection file
+require('_inc/dbconn.php');
+
+if(isset($_SESSION['customer_login'])) {
+    // If the user is already logged in, redirect to customer account summary page
+    header('location:customer_account_summary.php');
+    exit(); // Make sure to exit after a header redirection
+}
+
+if(isset($_REQUEST['submitBtn'])) {
+    $username = $_REQUEST['uname'];
+
+    // Salting of password
+    $salt = "@g26jQsG&nh*&#8v";
+    $password = sha1($_REQUEST['pwd'].$salt);
+
+    $sql = "SELECT email, password FROM customer WHERE email='$username' AND password='$password'";
+    $result = mysqli_query($con, $sql) or die(mysqli_error());
+    $rws = mysqli_fetch_array($result);
+
+    $user = $rws[0];
+    $pwd = $rws[1];
+
+    if($user == $username && $pwd == $password) {
+        // Set session variables and redirect to customer account summary page
+        $_SESSION['customer_login'] = 1;
+        $_SESSION['cust_id'] = $username;
+        header('location:customer_account_summary.php');
+        exit(); // Make sure to exit after a header redirection
+    } else {
+        // If username or password is incorrect, redirect to index.php
+        header('location:index.php');
+        exit(); // Make sure to exit after a header redirection
+    }
+}
 ?>
 
 <!DOCTYPE html>
