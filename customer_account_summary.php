@@ -50,8 +50,8 @@ if(!isset($_SESSION['customer_login']))
             <?php
                 
                 $sql="SELECT * FROM passbook".$_SESSION['login_id'] ;
-                $result=  mysql_query($sql) or die(mysql_error());
-                while($rws=  mysql_fetch_array($result))
+                $result=  mysqli_query($con,$sql) or die(mysql_error());
+                while($rws=  mysqli_fetch_array($result))
                 {
                 $balance=$rws[7];
                 }            
