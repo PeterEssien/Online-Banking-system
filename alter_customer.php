@@ -19,6 +19,6 @@ $mobile=  mysql_real_escape_string($_REQUEST['edit_mobile']);
 $sql="UPDATE customer SET  name='$name', dob='$dob', nominee='$nominee', account='$type', 
      address='$address', 
         mobile='$mobile', gender='$gender' WHERE id='$id'";
-mysql_query($sql) or die(mysql_error());
+mysqli_query($con,$sql) or die(mysql_error());
 header('location:admin_hompage.php');
 ?>
