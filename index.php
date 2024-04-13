@@ -1,15 +1,3 @@
-<!-- Authors:
-     Rashid Feroz [rashid.2008feroz@gmail.com]
-     fb - facebook.com/rashid.feroz1
-     website - www.hackwhiz.com
-
-     Kuldeep kumar [kuldeepanditkumar@gmail.com]
-     fb - facebook.com/kuldeepanditkumar
-
-     Abhimanyu shrivastava [aabhimanyu13@gmail.com]
-     fb - facebook.com/abhimanyu.shrivastava.58
-     -->
-
 <?php
 // Ensure no whitespace or output before session_start()
 session_start();
