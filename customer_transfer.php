@@ -47,8 +47,8 @@ if(!isset($_SESSION['customer_login']))
         
         
         $sql="SELECT * FROM beneficiary1 WHERE sender_id='$sender_id' AND status='ACTIVE'";
-        $result=  mysql_query($sql);
-        $rws=mysql_fetch_array($result);
+        $result=  mysqli_query($con,$sql);
+        $rws=mysqli_fetch_array($result);
         $s_id=$rws[1];              
         ?>
         
