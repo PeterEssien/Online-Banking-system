@@ -50,8 +50,8 @@ if(!isset($_SESSION['customer_login']))
                          include '_inc/dbconn.php';
                          $sender_id=$_SESSION["login_id"];
                          $sql="SELECT * FROM passbook".$sender_id." WHERE transactiondate BETWEEN '$date1' AND '$date2'";
-                         $result=  mysql_query($sql) or die(mysql_error());
-                        while($rws=  mysql_fetch_array($result)){
+                         $result=  mysqli_query($con,$sql) or die(mysql_error());
+                        while($rws=  mysqli_fetch_array($result)){
                             
                             echo "<tr>";
                             echo "<td>".$rws[0]."</td>";
